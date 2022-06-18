@@ -132,6 +132,19 @@ main {
     background-color: var(--yellow);
 }
 
+.highlight {
+    background-color: rgba(6, 182, 0, 0.123);
+}
+
+.hover_highlight {
+    background-color: rgba(6, 182, 0, 0.253);
+}
+
+.is_dragging {
+    cursor:move;
+    opacity: 50%;
+}
+
 /* SCROLL BAR */
 
 .container_itens::-webkit-scrollbar {
