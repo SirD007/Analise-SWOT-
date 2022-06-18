@@ -86,11 +86,11 @@ function itemClicked(ev, item) {
 }
 
 // HANDLE OUTSIDE MODAL CLICK -> CLOSE MODAL WITHOUT SAVE CHANGES
-window.onclick = function (event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-}
+var mouseDownTarget;
+document.addEventListener("mousedown", ev => mouseDownTarget = ev.target)
+modal.addEventListener("click", () => {
+  if (mouseDownTarget == modal) { modal.style.display = "none" }
+})
 
 // HANDLE ADD_ITEM_BTN CLICK
 function openModalToCreate(ev, addItemBtn) {
