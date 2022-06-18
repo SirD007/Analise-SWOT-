@@ -150,39 +150,53 @@ function saveItem(ev) {
 
 
 // DRAG
+const swot_containers = document.querySelectorAll('.container_itens');
+const swot_itens = document.querySelectorAll('.item');
 
-const swot_container = document.querySelectorAll('.container_itens');
-const swot_item = document.querySelector('.item');
+swot_itens.forEach(swot_item => {
+  swot_item.addEventListener('dragstart', dragstart)
+  swot_item.addEventListener('drag', drag)
+  swot_item.addEventListener('dragend', dragend)
+})
 
-swot_item.addEventListener('dragstart', hold);
-swot_item.addEventListener('dragend', dropped);
+function dragstart () {
+  swot_containers.forEach(swot_container => swot_container.classList.add('highlight'))
 
-function hold() {
-  this.className += ' hold';
-  setTimeout(() => this.className = 'none', 0);
+  this.classList.add("is_dragging")
 }
 
-function dropped() {
-  this.className = 'fill';
+function drag () {
+  this.classList.add("is_dragging")
 }
 
-for (const swot_content of swot_container) {
-  swot_content.addEventListener('dragover', e => e.preventDefault());
-  swot_content.addEventListener('dragenter', hovered);
-  swot_content.addEventListener('dragleave', left);
-  swot_content.addEventListener('drop', dropIt);
+function dragend () {
+  swot_containers.forEach(swot_container => swot_container.classList.remove('highlight'))
+
+  this.classList.remove("is_dragging")
 }
 
-function hovered(e) {
-  e.preventDefault();
-  this.className += ' hovered';
+swot_containers.forEach(swot_container => {
+  swot_container.addEventListener('dragenter', dragenter)
+  swot_container.addEventListener('dragover', dragover)
+  swot_container.addEventListener('dragleave', dragleave)
+  swot_container.addEventListener('drop', drop)
+})
+
+function dragenter() {
 }
 
-function left() {
-  this.className = 'empty';
+function dragover() {
+  this.classList.add("hover_highlight")
+
+  const ItemBeingDragged = document.querySelector ('.is_dragging')
+
+  this.appendChild(ItemBeingDragged)
 }
 
-function dropIt() {
-  this.append(swot_item);
-  this.classList.remove('hovered');
+function dragleave() {
+  this.classList.remove("hover_highlight")
+}
+
+function drop() {
+  this.classList.remove("hover_highlight")
 }
