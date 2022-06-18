@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="SirD007 RrR2010">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <link rel="stylesheet" href="style.css">
+    <title>Análise SWOT</title>
+</head>
+<body>
+    <nav class="navbar">
+        <button class="navbar_btn" id="new_swot"><span class="material-symbols-outlined">note_add</span>Nova Análise</button>
+        <button class="navbar_btn" id="export"><span class="material-symbols-outlined">file_download</span>Exportar</button>
+        <button class="navbar_btn" id="print"><span class="material-symbols-outlined">print</span>Imprimir</button>
+    </nav>
+    <main>
+        <div class="container_content">
+            <div class="container_swot" id="strength_container">
+                <div class="container_header">Forças</div>
+                <div class="container_itens">
+                    <div class="item" ondragstart="dragStart(event)" draggable="true" id="1" description="Descrição da força 1" style="--tag_color:#2ECC71"><p>Força 1</p><span class="material-symbols-outlined btn_delete">delete</span></div>
+                    <div class="item" ondragstart="dragStart(event)" draggable="true" id="2" description="Descrição da força 2" style="--tag_color:#3498DB"><p>Força 2</p><span class="material-symbols-outlined btn_delete">delete</span></div>
+                    <div class="item" ondragstart="dragStart(event)" draggable="true" id="3" description="Descrição da força 3" style="--tag_color:#3498DB"><p>Força 3</p><span class="material-symbols-outlined btn_delete">delete</span></div>
+                <div class="container_add_item" id="add_strength"><span class="material-symbols-outlined btn_add_new">add</span>Adicionar novo Item</div>
+                </div>
+            </div>
+            <div class="container_swot" id="weakness_container">
+                <div class="container_header">Fraquezas</div>
+                <div class="container_itens">
+                    <div class="item" draggable="true" ondragstart="dragStart(event)" id="4" description="Descrição da fraqueza 1" style="--tag_color: #9B59B6"><p>Fraqueza 1</p><span class="material-symbols-outlined btn_delete">delete</span></div>
+                    <div class="item" draggable="true" ondragstart="dragStart(event)" id="5" description="Descrição da fraqueza 2" style="--tag_color:#3498DB"><p>Fraqueza 2</p><span class="material-symbols-outlined btn_delete">delete</span></div>
+                    <div class="item" draggable="true" ondragstart="dragStart(event)" id="6" description="Descrição da fraqueza 3" style="--tag_color:#9B59B6"><p>Fraqueza 3</p><span class="material-symbols-outlined btn_delete">delete</span></div>
+                    <div class="item" draggable="true" ondragstart="dragStart(event)" id="7" description="Descrição da fraqueza 4" style="--tag_color:#F1C40F"><p>Fraqueza 4</p><span class="material-symbols-outlined btn_delete">delete</span></div>
+                    <div class="item" draggable="true" ondragstart="dragStart(event)" id="8" description="Descrição da fraqueza 5" style="--tag_color:#3498DB"><p>Fraqueza 5</p><span class="material-symbols-outlined btn_delete">delete</span></div>
+                    <div class="item" draggable="true" ondragstart="dragStart(event)" id="9" description="Descrição da fraqueza 6" style="--tag_color:#2ECC71"><p>Fraqueza 6</p><span class="material-symbols-outlined btn_delete">delete</span></div>
+                    <div class="item" draggable="true" ondragstart="dragStart(event)" id="10" description="Descrição da fraqueza 7" style="--tag_color:#F1C40F"><p>Fraqueza 7</p><span class="material-symbols-outlined btn_delete">delete</span></div>
+                    <div class="item" draggable="true" ondragstart="dragStart(event)" id="11" description="Descrição da fraqueza 8" style="--tag_color:#3498DB"><p>Fraqueza 8</p><span class="material-symbols-outlined btn_delete">delete</span></div>
+                    <div class="item" draggable="true" ondragstart="dragStart(event)" id="12" description="Descrição da fraqueza 9" style="--tag_color:#2ECC71"><p>Fraqueza 9</p><span class="material-symbols-outlined btn_delete">delete</span></div>
+                <div class="container_add_item" id="add_weakness"><span class="material-symbols-outlined btn_add_new">add</span>Adicionar novo Item</div>
+                </div>
+            </div>
+            <div class="container_swot" id="oportunity_container">
+                <div class="container_header">Oportunidades</div>
+                <div class="container_itens">
+                    <div class="item" ondragstart="dragStart(event)" draggable="true" id="13" description="Descrição da oportunidade 1" style="--tag_color:#9B59B6"><p>Oportunidade 1</p><span class="material-symbols-outlined btn_delete">delete</span></div>
+                    <div class="item" ondragstart="dragStart(event)" draggable="true" id="14" description="Descrição da oportunidade 2" style="--tag_color:#3498DB"><p>Oportunidade 2</p><span class="material-symbols-outlined btn_delete">delete</span></div>
+                    <div class="item" ondragstart="dragStart(event)" draggable="true" id="15" description="Descrição da oportunidade 3" style="--tag_color:#1ABC9C"><p>Oportunidade 3</p><span class="material-symbols-outlined btn_delete">delete</span></div>
+                <div class="container_add_item" id="add_oportunity"><span class="material-symbols-outlined btn_add_new">add</span>Adicionar novo Item</div>
+                </div>
+            </div>
+            <div class="container_swot" id="threat_container">
+                <div class="container_header">Ameaças</div>
+                <div ondrop="dropIt(event)" ondragover="allowDrop(event)" class="container_itens">
+                    <div class="item" ondragstart="dragStart(event)" draggable="true" id="16" description="Descrição da ameaça 1" style="--tag_color:#1ABC9C"><p>Ameaça 1</p><span class="material-symbols-outlined btn_delete">delete</span></div>
+                    <div class="item" ondragstart="dragStart(event)" draggable="true" id="17" description="Descrição da ameaça 2" style="--tag_color:#3498DB"><p>Ameaça 2</p><span class="material-symbols-outlined btn_delete">delete</span></div>
+                    <div class="item" ondragstart="dragStart(event)" draggable="true" id="18" description="Descrição da ameaça 3" style="--tag_color:#F1C40F"><p>Ameaça 3</p><span class="material-symbols-outlined btn_delete">delete</span></div>
+                <div class="container_add_item" id="add_threat"><span class="material-symbols-outlined btn_add_new">add</span><p>Adicionar novo item</p></div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <div class="modal" id="modal" current_item="" current_type="">
+        <div class="modal_content">
+
+            <div class="modal_header">
+                <input title="Clique para editar" type="text" id="item_title" value="Título do item">
+            </div>
+
+            <div class="modal_tags">
+                <datalist id="tag_color_picker_list">
+                    <option value="#FFFFFF">
+                    <option value="#9B59B6">
+                    <option value="#E74C3C">
+                    <option value="#3498DB">
+                    <option value="#E67E22">
+                    <option value="#F1C40F">
+                    <option value="#2ECC71">
+                    <option value="#16A085">
+                </datalist>
+                    <label for="tag_color">Tag</label>
+                    <input type="color" value="#2ECC71" id="tag_color_picker" name="tag_color" list="tag_color_picker_list">
+            </div>
+
+            <div class="modal_description">
+                <label for="item_description">Descrição</label>
+                <!-- <input type="text" name="item_description" id="item_description"> -->
+                <textarea name="item_description" id="item_description" cols="30" rows="10">Descrição</textarea>
+            </div>
+
+            <div class="modal_buttons">
+                <button id="modal_save_btn">Salvar</button>
+            </div>
+
+        </div>
+    </div>
+    <script type="text/javascript" src="script.js"></script>
+</body>
+</html>
