@@ -1,8 +1,8 @@
-*{
+* {
     box-sizing: border-box;
 }
 
-body{
+body {
     margin: 0;
     padding: 0;
     width: 100vw;
@@ -13,7 +13,7 @@ body{
     /* overflow: hidden; */
 }
 
-:root{
+:root {
     --bg: #fff;
     --green: #00aa6c;
     --red: #fc6d79;
@@ -28,7 +28,7 @@ body{
 
 /* START OF NAV BAR */
 
-nav{
+nav {
     background-color: var(--nav_bar);
     width: 100vw;
     display: flex;
@@ -39,7 +39,7 @@ nav{
     flex: 0 1 auto;
 }
 
-nav .navbar_btn{
+nav .navbar_btn {
     padding: 10px 15px;
     background-color: var(--nav_btn);
     border: none;
@@ -55,24 +55,24 @@ nav .navbar_btn{
     align-items: center;
 }
 
-nav .navbar_btn:hover{
+nav .navbar_btn:hover {
     background-color: var(--primary);
     box-shadow: 0 0 5px 5px rgba(83, 83, 83, 0.103);
     border: none;
 }
 
-.material-symbols-outlined{
-    vertical-align:middle;
+.material-symbols-outlined {
+    vertical-align: middle;
 }
 
 /* END OF NAV BAR */
 
 /* START OF SWOT CONTENT */
 
-main{
+main {
     height: 90vh;
     display: flex;
-    padding: 10px;  
+    padding: 10px;
 }
 
 .container_content {
@@ -85,7 +85,7 @@ main{
     border-radius: 0 0 5px 5px;
 }
 
-.container_swot{
+.container_swot {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -115,19 +115,19 @@ main{
     color: var(--text_color);
 }
 
-.container_swot#strength_container .container_header{
+.container_swot#strength_container .container_header {
     background-color: var(--green);
 }
 
-.container_swot#weakness_container .container_header{
+.container_swot#weakness_container .container_header {
     background-color: var(--red);
 }
 
-.container_swot#oportunity_container .container_header{
+.container_swot#oportunity_container .container_header {
     background-color: var(--blue);
 }
 
-.container_swot#threat_container .container_header{
+.container_swot#threat_container .container_header {
     background-color: var(--yellow);
 }
 
@@ -135,8 +135,8 @@ main{
 
 .container_itens::-webkit-scrollbar {
     width: 0px;
-  }
-  
+}
+
 /* .container_itens::-webkit-scrollbar-track {
     background: #f1f1f100;
   }
@@ -192,11 +192,11 @@ main{
     background-color: var(--item_hover);
 }
 
-.item:hover .btn_delete{
+.item:hover .btn_delete {
     opacity: 1;
 }
 
-.container_add_item{
+.container_add_item {
     padding: 10px 10px;
     cursor: pointer;
     display: -webkit-box;
@@ -206,17 +206,17 @@ main{
     -ms-flex-align: center;
     align-items: center;
     transition: all 0.5s ease;
-    margin-top: 10px;
     border-radius: 5px;
     border: none;
 }
 
-.container_add_item span, p{
+.container_add_item span,
+p {
     font-size: 15px;
     margin: 0;
 }
 
-.container_add_item:hover{
+.container_add_item:hover {
     background-color: var(--item_hover);
 }
 
@@ -234,10 +234,10 @@ main{
     width: 100%;
     height: 100%;
     overflow: hidden;
-    background-color: rgba(0,0,0,0.4);
+    background-color: rgba(0, 0, 0, 0.4);
 }
 
-.modal_content{
+.modal_content {
     display: flex;
     flex-direction: column;
     border-radius: 5px;
@@ -252,25 +252,25 @@ main{
 
 }
 
-.modal_tags{
+.modal_tags {
     display: flex;
     flex-direction: column;
 }
 
 .modal_tags input[type=color] {
     margin-top: 5px;
-	width: 60px;
-	height: 32px;
+    width: 60px;
+    height: 32px;
     border: none;
     cursor: pointer;
 }
 
 .modal_tags input[type="color"]::-webkit-color-swatch-wrapper {
-	padding: 0;
+    padding: 0;
 }
 
 input[type="color"]::-webkit-color-swatch {
-	border-radius: 10%;
+    border-radius: 10%;
     border: rgb(24, 24, 24);
 }
 
@@ -280,7 +280,7 @@ input[type="color"]::-webkit-color-swatch {
 }
 
 
-.modal_buttons{
+.modal_buttons {
     display: flex;
     flex-direction: row-reverse;
 }
@@ -331,7 +331,7 @@ label {
 
 
 
-#modal_save_btn{
+#modal_save_btn {
     padding: 10px 15px;
     background-color: var(--nav_btn);
     border: none;
@@ -348,9 +348,10 @@ label {
     border: solid 1px lightgray;
 }
 
-#modal_save_btn:hover{
+#modal_save_btn:hover {
     background-color: var(--primary);
     box-shadow: 0 0 5px 5px rgba(83, 83, 83, 0.103);
     border: solid 1px lightgray;
 }
+
 /* END OF MODAL */
