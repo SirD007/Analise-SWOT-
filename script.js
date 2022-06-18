@@ -122,7 +122,6 @@ function saveItem(ev) {
   var modalCurrentItem = modal.getAttribute("current_item");
   var modalCurrentType = modal.getAttribute("current_type");
   if (modalCurrentItem == "") {
-    itemsGlobalCount++
     let newItem = createNewItem(modalTitle.value, modalDescription.value, itemsGlobalCount, modalColorPicker.value);
     let typeNames = {
       "strength": "strength_container",
