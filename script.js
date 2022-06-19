@@ -93,7 +93,9 @@ function createNewItem(title, description, tagColor) {
   let item = new Item(itemsGlobalCount, title, description, tagColor);
 
   item.deleteButtonElement.addEventListener("click", function (ev) { deleteItem(ev, item.element) });
-  item.element.addEventListener("click", function (ev) { itemClicked(ev, item.element) });
+  item.element.addEventListener("click", function (ev) { itemClicked(ev, item.element)
+
+  });
   // item.element.addEventListener('dragstart', dragstart);
   // item.element.addEventListener('drag', drag);
   // item.element.addEventListener('dragend', dragend);
@@ -118,6 +120,17 @@ function deleteItem(ev, item) {
   item.remove();
   ev.stopPropagation();
 }
+
+// MODAL REMOVE BUTTON
+
+let modalRemoveButton = document.getElementById('modal_remove_btn')
+  modalRemoveButton.addEventListener('click', () => {
+  let item = document.querySelector('.item')
+    item.remove()
+
+  let modal = document.getElementById('modal')
+  modal.style.display = "none"
+})
 
 // HANDLE ITEM NORMAL CLICK -> OPEN MODAL TO EDIT
 function itemClicked(ev, item) {
@@ -225,7 +238,7 @@ window.onclick = function(event) {
     ConfirmNewSwotWindow.style.display = "none";
   }}
 
-  
+
 
 // EXPORT
 function generateCSV() {
