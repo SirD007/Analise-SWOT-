@@ -1,6 +1,5 @@
 // DECLARE CONSTANTS
 const modal = document.getElementById("modal");
-const items = document.querySelectorAll('.item');
 const addItemsBtns = document.querySelectorAll(".container_add_item")
 const modalColorPicker = document.getElementById("tag_color_picker")
 const modalSaveBtn = document.getElementById("modal_save_btn")
@@ -8,14 +7,6 @@ const NewSwotBtn = document.getElementById("new_swot")
 
 // DECLARE GLOBAL VARIABLES
 var itemsGlobalCount = 0
-
-// REGISTER ITEMS EVENTS
-for (var i = 0; i < items.length; i++) {
-  let item = items[i]
-  itemDeleteBtn = item.querySelector(".btn_delete");
-  itemDeleteBtn.addEventListener("click", function (ev) { deleteItem(ev, item) });
-  item.addEventListener("click", function (ev) { itemClicked(ev, item) });
-}
 
 for (var i = 0; i < addItemsBtns.length; i++) {
   let add_item_btn = addItemsBtns[i];
@@ -208,6 +199,7 @@ NewSwotBtn.addEventListener('click', () => {
   Array.from(items).forEach(item =>{
     item.remove();
   })
+  itemsGlobalCount = 0;
 })
 
 

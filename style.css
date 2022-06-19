@@ -10,7 +10,6 @@ body {
     display: flex;
     flex-direction: column;
     font-family: 'lato', 'san-serif';
-    /* overflow: hidden; */
 }
 
 :root {
@@ -90,15 +89,6 @@ nav .navbar_btn:hover {
     vertical-align: middle;
 }
 
-.nav_bar_mobile {
-    background-color: var(--nav_bar);
-    right:0;
-    width: 80%;
-    height: 100vh;
-    position: absolute;
-    z-index: 10;
-    display: none;
-}
 /* END OF NAV BAR */
 
 /* START OF SWOT CONTENT */
@@ -311,7 +301,7 @@ p {
     display: flex;
     flex-direction: column;
     border-radius: 5px;
-    width: 35vw;
+    width: 40vw;
     height: auto;
     background-color: var(--bg);
     margin: auto;
@@ -452,11 +442,26 @@ label {
 
 @media (max-width: 768px) {
     .modal_content {
-        width: 50vw;
+        width: 70vw;
+    }
+
+    .item .btn_delete {
+        opacity: 1;
+        background-color: rgb(255, 157, 157);
+        color: var(--bg);
     }
 }
 
 @media (max-width: 425px) {
+   .container_swot{
+        height: auto;
+        overflow:visible;
+   }
+    .container_itens {
+        overflow:hidden;
+        height: auto;
+    }
+
     .modal_content {
         width: 90vw;
     }
@@ -473,5 +478,12 @@ label {
     nav .logo span p {
         font-size: 15px;
     }
+}
+
+@media (max-width: 375px) {
+    nav .nav_buttons .navbar_btn .btn_text {
+        display: none;
+    }
+    
 }
 
