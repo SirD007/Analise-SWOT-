@@ -17,4 +17,10 @@ WIP features:
 
 TODO features:
 - Undo-redo system;
+- Keyboard shortcuts;
 - Save/load system.
+
+Maybe have features:
+- TOWS analysis;
+- Multi-tag system;
+- Rich-text description.
