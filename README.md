@@ -18,7 +18,9 @@ WIP features:
 TODO features:
 - Undo-redo system;
 - Keyboard shortcuts;
-- Save/load system.
+- Save/load system;
+- Add remove button inside item modal;
+- add select all itens or some of then to do some action like remove or export.
 
 Maybe have features:
 - TOWS analysis;
