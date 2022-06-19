@@ -53,15 +53,13 @@ nav .logo {
     user-select: none;
 }
 
-nav .logo span {
+nav .logo span p{
     color: var(--green);
-
-}
-
-nav .logo span p {
     font-size: 25px;
     font-weight: 900;
+    margin: 0;
 }
+
 
 nav .navbar_btn {
     padding: 10px 15px;
@@ -571,12 +569,10 @@ label {
     .confirm_newSwot_content{
         width: 70vw;
     }
-}
 
-@media (max-width: 375px) {
     nav .nav_buttons .navbar_btn .btn_text {
         display: none;
     }
-    
 }
+
 
