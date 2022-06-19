@@ -60,7 +60,6 @@ nav .logo span {
 }
 
 nav .logo span p {
-    text-shadow: 0px 0px 10px var(--green);
     font-size: 25px;
     font-weight: 900;
 }
@@ -91,6 +90,15 @@ nav .navbar_btn:hover {
     vertical-align: middle;
 }
 
+.nav_bar_mobile {
+    background-color: var(--nav_bar);
+    right:0;
+    width: 80%;
+    height: 100vh;
+    position: absolute;
+    z-index: 10;
+    display: none;
+}
 /* END OF NAV BAR */
 
 /* START OF SWOT CONTENT */
@@ -303,7 +311,7 @@ p {
     display: flex;
     flex-direction: column;
     border-radius: 5px;
-    width: clamp(100px, 35vw, 800px);
+    width: 35vw;
     height: auto;
     background-color: var(--bg);
     margin: auto;
@@ -440,3 +448,30 @@ label {
 }
 
 /* END OF MODAL */
+
+
+@media (max-width: 768px) {
+    .modal_content {
+        width: 50vw;
+    }
+}
+
+@media (max-width: 425px) {
+    .modal_content {
+        width: 90vw;
+    }
+    .container_content {
+        display: flex;
+        flex-direction: column;
+    }
+
+    nav .logo {
+        font-size: 15px;
+        gap: 5px;
+    }
+
+    nav .logo span p {
+        font-size: 15px;
+    }
+}
+

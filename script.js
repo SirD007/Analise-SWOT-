@@ -37,6 +37,7 @@ class Item {
     this._title = title;
     this._description = description;
     this._tagColor = tagColor;
+    this._type = "";
 
     this.element = document.createElement("div");
     this.element.classList.add("item");
@@ -89,17 +90,20 @@ class Item {
     this._tagColor = value;
     this.element.style.setProperty("--tag_color", this._tagColor);
   }
+
+  get type() { return this.element.parentElement.parentElement.id.replace("_container", "") }
 }
 
 // GENEREATE NEW ITEM
-function createNewItem(id, title, description, tagColor) {
-  let item = new Item(id, title, description, tagColor);
+function createNewItem(title, description, tagColor) {
+  itemsGlobalCount++;
+  let item = new Item(itemsGlobalCount, title, description, tagColor);
 
   item.deleteButtonElement.addEventListener("click", function (ev) { deleteItem(ev, item.element) });
   item.element.addEventListener("click", function (ev) { itemClicked(ev, item.element) });
-  item.element.addEventListener('dragstart', dragstart);
-  item.element.addEventListener('drag', drag);
-  item.element.addEventListener('dragend', dragend);
+  // item.element.addEventListener('dragstart', dragstart);
+  // item.element.addEventListener('drag', drag);
+  // item.element.addEventListener('dragend', dragend);
   return item.element
 }
 
@@ -177,7 +181,7 @@ function saveItem(ev) {
   var modalCurrentItem = modal.getAttribute("current_item");
   var modalCurrentType = modal.getAttribute("current_type");
   if (modalCurrentItem == "") {
-    let newItem = createNewItem(itemsGlobalCount, modalTitle.value, modalDescription.value, modalColorPicker.value);
+    let newItem = createNewItem(modalTitle.value, modalDescription.value, modalColorPicker.value);
     let typeNames = {
       "strength": "strength_container",
       "weakness": "weakness_container",
@@ -208,27 +212,44 @@ NewSwotBtn.addEventListener('click', () => {
 
 
 // EXPORT
-function exportItems() {
-  var csvContent = generateCSV();
-  console.log(csvContent);
-  var encodedUri = encodeURI(csvContent);
-  var link = document.createElement("a");
-  link.setAttribute("href", encodedUri);
-  link.setAttribute("download", "swot_analysis.csv");
-  document.body.appendChild(link);
-  link.click();
-}
-
 function generateCSV() {
   let items = document.getElementsByClassName("item");
-  let rows = ["ID,Título,Descrição,Cor da Tag"];
+  let rows = ["ID,Título,Descrição,Cor da Tag,Tipo"];
   Array.from(items).forEach(itemEl =>{
     let item = Item.getFromId(itemEl.id);
-    let row = [item.id, item.title, item.description, item.tagColor].join(",");
+    let row = [item.id, item.title, item.description, item.tagColor, item.type].join(",");
     rows.push(row);
   });
-  return "data:text/csv;charset=utf-8," + rows.join("\n")
+  let rowsStr = rows.join("\n");
+  return rowsStr
 }
+
+function downloadContent(content, fileName, mimeType) {
+  var a = document.createElement('a');
+  mimeType = mimeType || 'application/octet-stream';
+
+  if (navigator.msSaveBlob) { // IE10
+    navigator.msSaveBlob(new Blob(["\ufeff", content], {
+      type: mimeType
+    }), fileName);
+  } else if (URL && 'download' in a) { //html5 A[download]
+    a.href = URL.createObjectURL(new Blob(["\ufeff", content], {
+      type: mimeType
+    }));
+    a.setAttribute('download', fileName);
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  } else {
+    location.href = 'data:application/octet-stream,' + encodeURIComponent(content); // only this mime type is supported
+  }
+}
+
+function exportItems() {
+  var csvContent = generateCSV();
+  downloadContent(csvContent, "swot_analysis.csv", "text/csv;encoding:utf-8");
+}
+
 
 // DRAG AND DROP
 const swotContainers = document.querySelectorAll('.container_itens');
