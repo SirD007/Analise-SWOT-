@@ -340,7 +340,9 @@ input[type="color"]::-webkit-color-swatch {
 
 .modal_buttons {
     display: flex;
-    flex-direction: row-reverse;
+    flex-direction: row;
+    justify-content: end;
+    gap: 10px;
 }
 
 .modal input#item_title {
@@ -409,8 +411,6 @@ label {
     color: gray;
 }
 
-
-
 #modal_save_btn {
     padding: 10px 15px;
     background-color: var(--nav_btn);
@@ -429,9 +429,52 @@ label {
 }
 
 #modal_save_btn:hover {
-    background-color: var(--primary);
-    box-shadow: 0 0 5px 5px rgba(83, 83, 83, 0.103);
+    background-color: var(--green);
+    box-shadow: 0 0 5px 5px rgba(83, 83, 83, 0.034);
     border: solid 1px lightgray;
+    color: white;
+}
+
+#modal_remove_btn{
+    position: relative;
+    vertical-align: middle;
+    padding: 10px 15px;
+    background-color: var(--red);
+    border: 1px;
+    border-radius: 5px;
+    cursor: pointer;
+    color: rgb(255, 255, 255);
+    display: inline-block;
+    align-items: center;
+    border: solid 1px lightgray;
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    max-width: 300px;
+}
+
+#modal_remove_btn:hover {
+    background-color: var(--nav_btn);
+    border: solid 1px var(--red);
+    color: var(--red);
+}
+
+#modal_remove_btn .modal_remove_btn_text{
+    max-width: 0;
+    white-space: nowrap;
+    max-height: 0;
+    display: inline-block;
+    overflow: hidden;
+    color: white;
+    vertical-align: middle;
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    transition-delay: 0.3s;
+}
+
+#modal_remove_btn:hover .modal_remove_btn_text {
+    max-width: 250px;
+    color: var(--red);
+    max-height: 250px;
 }
 
 /* END OF MODAL */

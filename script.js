@@ -225,6 +225,8 @@ window.onclick = function(event) {
     ConfirmNewSwotWindow.style.display = "none";
   }}
 
+  
+
 // EXPORT
 function generateCSV() {
   let items = document.getElementsByClassName("item");
