@@ -4,6 +4,8 @@ const addItemsBtns = document.querySelectorAll(".container_add_item")
 const modalColorPicker = document.getElementById("tag_color_picker")
 const modalSaveBtn = document.getElementById("modal_save_btn")
 const NewSwotBtn = document.getElementById("new_swot")
+const NewSwotYesBtn = document.getElementById("NewSwotYesBtn")
+const NewSwotNoBtn = document.getElementById("NewSwotNoBtn")
 
 // DECLARE GLOBAL VARIABLES
 var itemsGlobalCount = 0
@@ -195,13 +197,33 @@ function saveItem(ev) {
 // NEW SWOT
 
 NewSwotBtn.addEventListener('click', () => {
+  let ConfirmNewSwotWindow = document.querySelector('.confirmation_newSwot')
+  ConfirmNewSwotWindow.style.display = "grid";    
+})
+
+NewSwotNoBtn.addEventListener('click', () => {
+  let ConfirmNewSwotWindow = document.querySelector('.confirmation_newSwot')
+  ConfirmNewSwotWindow.style.display = "none";
+})
+
+
+NewSwotYesBtn.addEventListener('click', () => {
   let items = document.getElementsByClassName("item");
   Array.from(items).forEach(item =>{
     item.remove();
   })
   itemsGlobalCount = 0;
+
+  let ConfirmNewSwotWindow = document.querySelector('.confirmation_newSwot')
+  ConfirmNewSwotWindow.style.display = "none";
+
 })
 
+window.onclick = function(event) {
+  let ConfirmNewSwotWindow = document.querySelector('.confirmation_newSwot')
+  if (event.target == ConfirmNewSwotWindow) {
+    ConfirmNewSwotWindow.style.display = "none";
+  }}
 
 // EXPORT
 function generateCSV() {
