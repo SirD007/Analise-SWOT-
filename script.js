@@ -28,11 +28,14 @@ modalSaveBtn.addEventListener("click", function (ev) { saveItem(ev) })
 function createNewItem(title, description, id, tagColor) {
   var tempParent = document.createElement("div");
   itemsGlobalCount++;
-  tempParent.innerHTML = `<div class="item" draggable="true" ondragstart="dragStart(event)" id="${id}" description="${description}" style="--tag_color:${tagColor}"><p>${title}</p><span class="material-symbols-outlined btn_delete">delete</span></div>`;
+  tempParent.innerHTML = `<div class="item" draggable="true" id="${id}" description="${description}" style="--tag_color:${tagColor}"><p>${title}</p><span class="material-symbols-outlined btn_delete">delete</span></div>`;
   let item = tempParent.firstChild
   itemDeleteBtn = item.querySelector(".btn_delete");
   itemDeleteBtn.addEventListener("click", function (ev) { deleteItem(ev, item) });
   item.addEventListener("click", function (ev) { itemClicked(ev, item) });
+  item.addEventListener('dragstart', dragstart);
+  item.addEventListener('drag', drag);
+  item.addEventListener('dragend', dragend);
   return item
 }
 
