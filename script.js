@@ -113,6 +113,8 @@ function openModalAndSet(title, description, tagColor, currentItem, currentTypeN
   modal.setAttribute("current_item", currentItem);
   modal.setAttribute("current_type", currentTypeName);
   modal.style.display = "block";
+  let removeButtonModal = document.getElementById('modal_remove_btn')
+  removeButtonModal.style.display = "inline-block"
 }
 
 // HANDLE ITEM DELETE BUTTON CLICK
@@ -178,6 +180,9 @@ function openModalToCreate(ev, addItemBtn) {
     "",
     typeNames[addItemBtn.id]
   );
+    let removeButtonModal = document.getElementById('modal_remove_btn')
+    removeButtonModal.style.display = "none"
+
 }
 
 // HANDLE MODAL SAVE BUTTON
