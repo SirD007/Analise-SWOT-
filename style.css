@@ -264,8 +264,7 @@ main {
     justify-content: center;
 }
 
-.container_add_item span,
-p {
+.container_add_item span, p {
     font-size: 15px;
     margin: 0;
 }
