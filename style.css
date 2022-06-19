@@ -18,9 +18,9 @@ body {
     --green: #00aa6c;
     --red: #fc6d79;
     --blue: #8ea4ff;
-    --yellow: #ffcd6f;
+    --yellow: #ffba3a;
     --nav_btn: rgb(224, 224, 224);
-    --nav_bar: rgb(197, 197, 197);
+    --nav_bar: rgb(219, 219, 219);
     --primary: rgb(7, 255, 152);
     --text_color: rgb(65, 65, 65);
     --item_hover: rgb(228, 228, 228);
@@ -32,11 +32,37 @@ nav {
     background-color: var(--nav_bar);
     width: 100vw;
     display: flex;
+    justify-content: space-between;
     align-items: center;
     height: 4rem;
-    padding: 15px 10px;
+    padding: 15px 25px;
+
+}
+
+nav .nav_buttons {
+    display: flex;
     gap: 10px;
     flex: 0 1 auto;
+}
+
+nav .logo {
+    font-size: 25px;
+    font-weight: 900;
+    color: rgb(51, 51, 51);
+    display: flex;
+    gap: 10px;
+    user-select: none;
+}
+
+nav .logo span {
+    color: var(--green);
+
+}
+
+nav .logo span p {
+    text-shadow: 0px 0px 10px var(--green);
+    font-size: 25px;
+    font-weight: 900;
 }
 
 nav .navbar_btn {
@@ -57,7 +83,7 @@ nav .navbar_btn {
 
 nav .navbar_btn:hover {
     background-color: var(--primary);
-    box-shadow: 0 0 5px 5px rgba(83, 83, 83, 0.103);
+    box-shadow: 0 0 5px 5px rgba(83, 83, 83, 0.041);
     border: none;
 }
 
@@ -73,6 +99,7 @@ main {
     height: 90vh;
     display: flex;
     padding: 10px;
+    color: gray;
 }
 
 .container_content {
@@ -92,7 +119,8 @@ main {
     flex-wrap: nowrap;
     overflow: hidden;
     box-shadow: 0 0 10px 5px rgba(83, 83, 83, 0.2);
-    border-radius: 0px 0px 5px 5px;
+    border-radius: 5px 5px 5px 5px;
+    border: solid 1px lightgray;
 }
 
 .container_itens {
@@ -114,22 +142,37 @@ main {
     font-weight: bold;
     user-select: none;
     color: var(--text_color);
+    vertical-align: middle;
 }
 
-.container_swot#strength_container .container_header {
+.container_header .header_icon {
+    border-radius: 50%;
+    padding: 7px;
+    color: white;
+    margin-right: 10px;
+    font-size: 20px;
+}
+
+
+.container_swot#strength_container .header_icon {
     background-color: var(--green);
+    box-shadow: 0px 0px 20px var(--green_shadow);
 }
 
-.container_swot#weakness_container .container_header {
+.container_swot#weakness_container .header_icon {
     background-color: var(--red);
+    box-shadow: 0px 0px 20px var(--red_shadow);
 }
 
-.container_swot#oportunity_container .container_header {
+.container_swot#oportunity_container .header_icon {
     background-color: var(--blue);
+    box-shadow: 0px 0px 20px var(--blue_shadow);
 }
 
-.container_swot#threat_container .container_header {
+.container_swot#threat_container .header_icon {
     background-color: var(--yellow);
+    box-shadow: 0px 0px 20px var(--yellow_shadow);
+
 }
 
 .highlight {
@@ -235,6 +278,10 @@ p {
     background-color: var(--item_hover);
 }
 
+.ghost_item{
+    opacity: 0.5;
+}
+
 /* END OF SWOT CONTENT */
 
 /* START OF MODAL */
@@ -264,6 +311,7 @@ p {
     gap: 20px;
     box-shadow: 0 0 10px 5px rgba(83, 83, 83, 0.274);
     background-color: var(--item_hover);
+    position: relative;
 
 }
 
@@ -302,7 +350,7 @@ input[type="color"]::-webkit-color-swatch {
 
 .modal input#item_title {
     width: 100%;
-    padding: 10px;
+    padding: 10px 30px;
     font-size: 1.3rem;
     border: none;
     transition: all 0.5s ease;
@@ -310,6 +358,7 @@ input[type="color"]::-webkit-color-swatch {
     cursor: pointer;
     background-color: #c7ceea00;
     border-radius: 10px;
+    position: relative;
 }
 
 .modal input#item_title:focus {
@@ -317,6 +366,27 @@ input[type="color"]::-webkit-color-swatch {
     background-color: var(--bg);
     outline: solid 1px lightgray;
     border-radius: 10px;
+    cursor: text;
+}
+
+
+.edit_title_tip {
+    font-size: 0.8rem;
+    padding: 2px 5px;
+    border-radius: 3px;
+    position: absolute;
+    cursor:default;
+    user-select: none;
+    color: rgb(255, 255, 255);
+    top: 32px;
+    left: 20px;
+    display: flex;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    background-color: #00aa6c;
+    justify-content: center;
+    align-items: center;
 }
 
 .modal textarea {

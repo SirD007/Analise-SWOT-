@@ -4,6 +4,7 @@ const items = document.querySelectorAll('.item');
 const addItemsBtns = document.querySelectorAll(".container_add_item")
 const modalColorPicker = document.getElementById("tag_color_picker")
 const modalSaveBtn = document.getElementById("modal_save_btn")
+const NewSwotBtn = document.getElementById("new_swot")
 
 // DECLARE GLOBAL VARIABLES
 var itemsGlobalCount = 0
@@ -23,32 +24,83 @@ for (var i = 0; i < addItemsBtns.length; i++) {
 
 modalSaveBtn.addEventListener("click", function (ev) { saveItem(ev) })
 
+// @class Represents an item HTMLDivElement with all properties setted
+class Item {
+  /**
+   * @param {number} id 
+   * @param {string} title 
+   * @param {string} description 
+   * @param {string} tagColor
+   */
+  constructor(id, title="Novo item", description="Descrição do item", tagColor="#d3d3d3") {
+    this._id = id;
+    this._title = title;
+    this._description = description;
+    this._tagColor = tagColor;
 
-// GENEREATE NEW ITEM
-function createNewItem(title, description, id, tagColor) {
-  var tempParent = document.createElement("div");
-  itemsGlobalCount++;
-  tempParent.innerHTML = `<div class="item" draggable="true" id="${id}" description="${description}" style="--tag_color:${tagColor}"><p>${title}</p><span class="material-symbols-outlined btn_delete">delete</span></div>`;
-  let item = tempParent.firstChild
-  itemDeleteBtn = item.querySelector(".btn_delete");
-  itemDeleteBtn.addEventListener("click", function (ev) { deleteItem(ev, item) });
-  item.addEventListener("click", function (ev) { itemClicked(ev, item) });
-  item.addEventListener('dragstart', dragstart);
-  item.addEventListener('drag', drag);
-  item.addEventListener('dragend', dragend);
-  return item
+    this.element = document.createElement("div");
+    this.element.classList.add("item");
+    this.element.id = this._id;
+    this.element.draggable = true;
+    this.element.setAttribute("description", this._description);
+    this.element.style.setProperty("--tag_color", this._tagColor);
+
+    this.titleElement = document.createElement("p");
+    this.element.append(this.titleElement);
+    this.titleElement.innerText = this._title;
+
+    this.deleteButtonElement = document.createElement("span");
+    this.element.append(this.deleteButtonElement);
+    this.deleteButtonElement.classList.add("material-symbols-outlined", "btn_delete");
+    this.deleteButtonElement.innerText = "delete";
+  }
+
+  static getFromId(id) {
+    let newItem = new Item(id);
+    newItem.element = document.getElementById(newItem._id);
+    newItem.titleElement = newItem.element.querySelector("p");
+    newItem.deleteButtonElement = newItem.element.querySelector(".btn_delete");
+    newItem.title = newItem.title;
+    newItem.description = newItem.description;
+    newItem.tagColor = newItem.tagColor;
+    return newItem
+  }
+
+  get id() { return this.element.id }
+  set id(value) {
+    this._id = value;
+    this.element.id = this._id;
+  }
+
+  get title() { return this.titleElement.innerText }
+  set title(value) {
+    this._title = value;
+    this.titleElement.innerText = this._title;
+  }
+
+  get description() { return this.element.getAttribute("description") }
+  set description(value) {
+    this._description = value;
+    this.element.setAttribute("description", this._description);
+  }
+
+  get tagColor() { return this.element.style.getPropertyValue("--tag_color") }
+  set tagColor(value) {
+    this._tagColor = value;
+    this.element.style.setProperty("--tag_color", this._tagColor);
+  }
 }
 
-function addItemTo(ev, addItemBtn) {
-  let container_names = {
-    "add_strength": "strength_container",
-    "add_weakness": "weakness_container",
-    "add_oportunity": "oportunity_container",
-    "add_threat": "threat_container"
-  }
-  var container_name = container_names[addItemBtn.id]
-  var container = document.getElementById("container_name")
-  console.log(container)
+// GENEREATE NEW ITEM
+function createNewItem(id, title, description, tagColor) {
+  let item = new Item(id, title, description, tagColor);
+
+  item.deleteButtonElement.addEventListener("click", function (ev) { deleteItem(ev, item.element) });
+  item.element.addEventListener("click", function (ev) { itemClicked(ev, item.element) });
+  item.element.addEventListener('dragstart', dragstart);
+  item.element.addEventListener('drag', drag);
+  item.element.addEventListener('dragend', dragend);
+  return item.element
 }
 
 // OPEN MODAL
@@ -125,7 +177,7 @@ function saveItem(ev) {
   var modalCurrentItem = modal.getAttribute("current_item");
   var modalCurrentType = modal.getAttribute("current_type");
   if (modalCurrentItem == "") {
-    let newItem = createNewItem(modalTitle.value, modalDescription.value, itemsGlobalCount, modalColorPicker.value);
+    let newItem = createNewItem(itemsGlobalCount, modalTitle.value, modalDescription.value, modalColorPicker.value);
     let typeNames = {
       "strength": "strength_container",
       "weakness": "weakness_container",
@@ -145,61 +197,98 @@ function saveItem(ev) {
   modal.style.display = "none";
 }
 
+// NEW SWOT
 
-
-
-
-
-
-
-// DRAG
-const swot_containers = document.querySelectorAll('.container_itens');
-const swot_itens = document.querySelectorAll('.item');
-
-swot_itens.forEach(swot_item => {
-  swot_item.addEventListener('dragstart', dragstart)
-  swot_item.addEventListener('drag', drag)
-  swot_item.addEventListener('dragend', dragend)
+NewSwotBtn.addEventListener('click', () => {
+  let items = document.getElementsByClassName("item");
+  Array.from(items).forEach(item =>{
+    item.remove();
+  })
 })
 
-function dragstart () {
-  swot_containers.forEach(swot_container => swot_container.classList.add('highlight'))
 
-  this.classList.add("is_dragging")
+// EXPORT
+function exportItems() {
+  var csvContent = generateCSV();
+  console.log(csvContent);
+  var encodedUri = encodeURI(csvContent);
+  var link = document.createElement("a");
+  link.setAttribute("href", encodedUri);
+  link.setAttribute("download", "swot_analysis.csv");
+  document.body.appendChild(link);
+  link.click();
 }
 
-function drag () {
-  this.classList.add("is_dragging")
+function generateCSV() {
+  let items = document.getElementsByClassName("item");
+  let rows = ["ID,Título,Descrição,Cor da Tag"];
+  Array.from(items).forEach(itemEl =>{
+    let item = Item.getFromId(itemEl.id);
+    let row = [item.id, item.title, item.description, item.tagColor].join(",");
+    rows.push(row);
+  });
+  return "data:text/csv;charset=utf-8," + rows.join("\n")
 }
 
-function dragend () {
-  swot_containers.forEach(swot_container => swot_container.classList.remove('highlight'))
+// DRAG AND DROP
+const swotContainers = document.querySelectorAll('.container_itens');
+swotContainers.forEach(container =>{
+  new Sortable(container, {
+    group: "shared",
+    animation: 100,
+    easing: "cubic-bezier(1, 0, 0, 1)",
+    ghostClass: "ghost_item"
+  });
+});
 
-  this.classList.remove("is_dragging")
-}
 
-swot_containers.forEach(swot_container => {
-  swot_container.addEventListener('dragenter', dragenter)
-  swot_container.addEventListener('dragover', dragover)
-  swot_container.addEventListener('dragleave', dragleave)
-  swot_container.addEventListener('drop', drop)
-})
 
-function dragenter() {
-}
+// const swot_itens = document.querySelectorAll('.item');
 
-function dragover() {
-  this.classList.add("hover_highlight")
+// swot_itens.forEach(swot_item => {
+//   swot_item.addEventListener('dragstart', dragstart)
+//   swot_item.addEventListener('drag', drag)
+//   swot_item.addEventListener('dragend', dragend)
+// })
 
-  const ItemBeingDragged = document.querySelector ('.is_dragging')
+// function dragstart () {
+//   swot_containers.forEach(swot_container => swot_container.classList.add('highlight'))
 
-  this.appendChild(ItemBeingDragged)
-}
+//   this.classList.add("is_dragging")
+// }
 
-function dragleave() {
-  this.classList.remove("hover_highlight")
-}
+// function drag () {
+//   this.classList.add("is_dragging")
+// }
 
-function drop() {
-  this.classList.remove("hover_highlight")
-}
+// function dragend () {
+//   swot_containers.forEach(swot_container => swot_container.classList.remove('highlight'))
+
+//   this.classList.remove("is_dragging")
+// }
+
+// swot_containers.forEach(swot_container => {
+//   swot_container.addEventListener('dragenter', dragenter)
+//   swot_container.addEventListener('dragover', dragover)
+//   swot_container.addEventListener('dragleave', dragleave)
+//   swot_container.addEventListener('drop', drop)
+// })
+
+// function dragenter() {
+// }
+
+// function dragover() {
+//   this.classList.add("hover_highlight")
+
+//   const ItemBeingDragged = document.querySelector ('.is_dragging')
+
+//   this.appendChild(ItemBeingDragged)
+// }
+
+// function dragleave() {
+//   this.classList.remove("hover_highlight")
+// }
+
+// function drop() {
+//   this.classList.remove("hover_highlight")
+// }
