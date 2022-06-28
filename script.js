@@ -95,6 +95,7 @@ function createNewItem(title, description, tagColor) {
   item.deleteButtonElement.addEventListener("click", function (ev) { deleteItem(ev, item.element) });
   item.element.addEventListener("click", function (ev) { itemClicked(ev, item.element)
 
+  
   });
   // item.element.addEventListener('dragstart', dragstart);
   // item.element.addEventListener('drag', drag);
@@ -117,22 +118,19 @@ function openModalAndSet(title, description, tagColor, currentItem, currentTypeN
   removeButtonModal.style.display = "inline-block"
 }
 
+
+// MODAL REMOVE BUTTON
+
+
+
+
+
 // HANDLE ITEM DELETE BUTTON CLICK
 function deleteItem(ev, item) {
   item.remove();
   ev.stopPropagation();
 }
 
-// MODAL REMOVE BUTTON
-
-let modalRemoveButton = document.getElementById('modal_remove_btn')
-  modalRemoveButton.addEventListener('click', () => {
-  let item = document.querySelector('.item')
-    item.remove()
-
-  let modal = document.getElementById('modal')
-  modal.style.display = "none"
-})
 
 // HANDLE ITEM NORMAL CLICK -> OPEN MODAL TO EDIT
 function itemClicked(ev, item) {
