@@ -16,8 +16,14 @@
     <nav class="navbar">
         <div class="logo">ANÁLISE <span><p>SWOT</p></span></div>
         <div class="nav_buttons">
-            <button class="navbar_btn" id="new_swot"><span class="material-symbols-outlined">note_add</span><span class="btn_text">Nova Análise</span> </button>
-            <button class="navbar_btn" id="export" onclick="exportItems()"><span class="material-symbols-outlined">file_download</span><span class="btn_text">Exportar</span> </button>
+            <div class="tooltip">
+                <button class="navbar_btn" id="new_swot"><span class="material-symbols-outlined">note_add</span><span class="btn_text"></span></button>
+                <span class="tooltiptext">Nova Análise</span>
+            </div>
+            <div class="tooltip">
+                <button class="navbar_btn" id="export" onclick="exportItems()"><span class="material-symbols-outlined">file_download</span><span class="btn_text"></span> </button>
+                <span class="tooltiptext">Exportar</span>
+            </div>
         </div>
     </nav>
     <main>
