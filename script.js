@@ -115,7 +115,7 @@ function openModalAndSet(title, description, tagColor, currentItem, currentTypeN
   modal.setAttribute("current_type", currentTypeName);
   modal.style.display = "block";
   let removeButtonModal = document.getElementById('modal_remove_btn')
-  removeButtonModal.style.display = "inline-block"
+  // removeButtonModal.style.display = "inline-block"
 }
 
 
