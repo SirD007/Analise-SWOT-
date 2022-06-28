@@ -591,6 +591,7 @@ label {
     color: white;
 }
 
+
 @media (max-width: 768px) {
     .modal_content {
         width: 70vw;
@@ -640,6 +641,10 @@ label {
 
     nav .nav_buttons .navbar_btn .btn_text {
         display: none;
+    }
+
+    nav {
+        padding: 15px 15px;
     }
 }
 
