@@ -297,6 +297,15 @@ swotContainers.forEach(container =>{
 });
 
 
+// OPEN SIDEBAR
+
+function openSideBar() {
+  document.getElementById("sidebar").style.width = "250px";
+}
+
+function closeNav() {
+  document.getElementById("sidebar").style.width = "0";
+}
 
 // const swot_itens = document.querySelectorAll('.item');
 

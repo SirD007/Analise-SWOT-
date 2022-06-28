@@ -14,14 +14,15 @@
 </head>
 <body>
     <nav class="navbar">
+        <div class="menu_expand_btn"><span onclick="openSideBar()" class="material-symbols-outlined menu_btn">menu</span></div>
         <div class="logo">ANÁLISE <span><p>SWOT</p></span><span class="beta_text">beta</span></div>
         <div class="nav_buttons">
             <div class="tooltip">
-                <button class="navbar_btn" id="new_swot"><span class="material-symbols-outlined">note_add</span><span class="btn_text"></span></button>
+                <button class="navbar_btn" id="new_swot"><span class="material-symbols-outlined">note_add</span></button>
                 <span class="tooltiptext">Nova Análise</span>
             </div>
             <div class="tooltip">
-                <button class="navbar_btn" id="export" onclick="exportItems()"><span class="material-symbols-outlined">file_download</span><span class="btn_text"></span> </button>
+                <button class="navbar_btn" id="export" onclick="exportItems()"><span class="material-symbols-outlined">file_download</span> </button>
                 <span class="tooltiptext">Exportar</span>
             </div>
             <!-- <div class="separator">
@@ -32,6 +33,15 @@
             </div> -->
         </div>
     </nav>
+    <aside>
+        <div id="sidebar" class="sidebar">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+            <a href="#">Item</a>
+            <a href="#">Item</a>
+            <a href="#">Item</a>
+            <a href="#">Item</a>
+          </div>
+    </aside>
     <main>
         <div class="container_content">
             <div class="container_swot" id="strength_container">
