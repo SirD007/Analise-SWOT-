@@ -59,6 +59,11 @@ nav .logo span p{
     font-weight: 900;
     margin: 0;
 }
+
+.beta_text {
+    font-size: 13px;
+    color: #F54B64;
+}
  
 
 nav .navbar_btn {
